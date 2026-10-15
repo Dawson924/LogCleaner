@@ -1,0 +1,34 @@
+# Build directories
+build/
+out/
+cmake-build-*/
+
+# IDE
+.vscode/
+.idea/
+*.user
+*.suo
+*.ncb
+*.sdf
+*.opensdf
+
+# Compiled binaries
+*.exe
+*.dll
+*.lib
+*.obj
+*.pdb
+*.ilk
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
