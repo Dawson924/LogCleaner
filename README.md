@@ -20,4 +20,3 @@ The executable will be at `build/LogCleaner.exe`.
 ## Notes
 
 - The program only looks for `.log` files in its own directory and subdirectories
-- Deletion is permanent (not sent to Recycle Bin)
