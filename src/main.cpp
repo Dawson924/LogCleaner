@@ -1,9 +1,33 @@
 #include <windows.h>
+#include <shellapi.h>
 #include "LogCleaner.h"
-
-#pragma comment(linker,"/manifestdependency:\"type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
+#include "LogCleanerConsole.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE, LPSTR, int nCmdShow) {
+    int argc = 0;
+    LPWSTR* argv = CommandLineToArgvW(GetCommandLineW(), &argc);
+
+    ConsoleOptions options = {};
+    bool runConsole = false;
+
+    for (int i = 1; i < argc; ++i) {
+        if (wcscmp(argv[i], L"--no-confirm") == 0) {
+            options.noConfirm = true;
+            runConsole = true;
+        } else if (wcscmp(argv[i], L"-d") == 0 || wcscmp(argv[i], L"-D") == 0) {
+            options.directDelete = true;
+            runConsole = true;
+        }
+    }
+
+    if (argv) {
+        LocalFree(argv);
+    }
+
+    if (runConsole) {
+        return RunConsole(options);
+    }
+
     LogCleanerApp app;
 
     if (!app.Initialize(hInstance, nCmdShow)) {

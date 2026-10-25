@@ -91,13 +91,16 @@ std::wstring FormatFileSize(ULONGLONG size) {
 
 AppSettings LoadSettings(const std::wstring& iniPath) {
     AppSettings settings;
-    settings.skipConfirmation = GetPrivateProfileIntW(L"Settings", L"SkipConfirmation", 0, iniPath.c_str()) != 0;
+    settings.autoDeletion = GetPrivateProfileIntW(L"Settings", L"AutoDeletion", 0, iniPath.c_str()) != 0;
+    settings.directDelete = GetPrivateProfileIntW(L"Settings", L"DirectDelete", 0, iniPath.c_str()) != 0;
     return settings;
 }
 
 void SaveSettings(const std::wstring& iniPath, const AppSettings& settings) {
-    WritePrivateProfileStringW(L"Settings", L"SkipConfirmation",
-        settings.skipConfirmation ? L"1" : L"0", iniPath.c_str());
+    WritePrivateProfileStringW(L"Settings", L"AutoDeletion",
+        settings.autoDeletion ? L"1" : L"0", iniPath.c_str());
+    WritePrivateProfileStringW(L"Settings", L"DirectDelete",
+        settings.directDelete ? L"1" : L"0", iniPath.c_str());
 }
 
 std::wstring GetExecutableDir() {

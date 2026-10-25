@@ -12,7 +12,8 @@ struct LogFileInfo {
 };
 
 struct AppSettings {
-    bool skipConfirmation;
+    bool autoDeletion;
+    bool directDelete;
 };
 
 std::vector<LogFileInfo> FindLogFilesRecursive(const std::wstring& rootDir);

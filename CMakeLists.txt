@@ -10,8 +10,9 @@ add_executable(LogCleaner WIN32
     src/LogCleaner.h
     src/Utils.cpp
     src/Utils.h
-    src/LogCleaner.manifest
+    src/LogCleanerConsole.cpp
+    src/LogCleanerConsole.h
 )
 
 target_compile_definitions(LogCleaner PRIVATE UNICODE _UNICODE)
-target_link_libraries(LogCleaner PRIVATE comctl32 shlwapi)
+target_link_libraries(LogCleaner PRIVATE comctl32 shlwapi dwmapi uxtheme)
